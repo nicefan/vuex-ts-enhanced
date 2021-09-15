@@ -1,7 +1,10 @@
 # Typescript enhanced for VUEX 4.x
-Better provide perceptive tips and TS checks, enhance state, geters infinite hierarchical property hints, and support read-only checks without affecting functions already supported by TS; Enhanced commit, dispache methods sense all operational type names and check payload parameters, and type names support name stitching of namespaced configurations.
+Better intelligent prompt and TS checks and without affecting functions already supported by TS.
++ Enhance `state`, `getters` infinite hierarchical property hints, and support read-only checks.
++ Enhanced `commit`, `dispatch` methods sense all operational type names and check payload parameters.
++ Support the 'namespaced' attribute configuration to automatically generate 'type' parameter names.
 
-[中文](#vuex-4x-TS增强) | [effect screenshot](#effect)  
+[中文](#vuex-4x-ts增强) | [effect screenshot](#effect)  
 
 Vuex PR: https://github.com/vuejs/vuex/pull/2054
 
@@ -37,7 +40,7 @@ Then you can use vuex without any change!
 ## Notice
 **Unsupported actions:**
 1. does not support object-style commit or dispatch because there is no limit to the payload must be object type.
-2. does not support the Accessing Global Assets in Namespaced Modules, this usage is not recommended.
+2. does not support the "Accessing Global Assets in Namespaced Modules", this usage is not recommended.
 3. does not support dynamic registration of the module, need to use `(store.dispatch any)('doSomething')` way to skip detection.
 
 *Incompatible usage `createStore<State>({...})`*  
@@ -75,7 +78,7 @@ declare module '@vue/runtime-core' {
 ## vuex 4.x TS增强
 更好的支持智能提示及TS检查，在不影响已有TS支持的功能情况下， 
 + 增强 state, getters 无限层级属性提示，并支持只读校验； 
-+ 增强 commit、dispache 方法感知所有操作类型名称并对载荷参数检查，
++ 增强 commit、dispatch 方法感知所有操作类型名称并对载荷参数检查，
 + 类型名称支持namespaced配置进行拼接。
 
 ## 使用

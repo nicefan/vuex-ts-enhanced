@@ -1,6 +1,6 @@
 {
   "name": "vuex-ts-enhanced",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Better intelligent prompt and TS checks for VUEX 4.x ",
   "author": "nicefan <covien@msn.com>",
   "keywords": ["vue", "vue3", "vuex", "vuex-ts", "vuex-typescript"],
