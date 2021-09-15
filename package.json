@@ -1,11 +1,15 @@
 {
   "name": "vuex-ts-enhanced",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Better intelligent prompt and TS checks for VUEX 4.x ",
+  "author": "nicefan <covien@msn.com>",
+  "keywords": ["vue", "vue3", "vuex", "vuex-ts", "vuex-typescript"],
   "main": "index.d.ts",
   "typings": "index.d.ts",
+  "files": [
+    "index.d.js"
+  ],
   "scripts": {},
-  "author": "nicefan <covien@msn.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/nicefan/vuex-ts-enhanced"

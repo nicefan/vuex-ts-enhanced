@@ -63,7 +63,5 @@ interface ExStore<Opt extends StoreOptions<any>> extends Store<Opt['state']> {
 type ExStoreOptions<Opt extends StoreOptions<any>, S> = StoreOptions<S> & Opt
 
 export function createStore<S, Opt>(options: ExStoreOptions<Opt, S>): ExStore<Opt>
-
-// export function createStore<O extends StoreOptions<any>>(options: O): ExStore<O>
-// export type ExCreateStore<S> = <Opt extends StoreOptions<S>>(options: Opt) => ExStore<Opt>
+export type ExCreateStore = <S, Opt>(options: ExStoreOptions<Opt, S>) => ExStore<Opt>
 // export function baseUseStore<S = any>(injectKey?: InjectionKey<S> | string): S;

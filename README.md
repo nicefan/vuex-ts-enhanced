@@ -28,12 +28,13 @@ Or to do so, adding a declaration file in your project folder:
 ```ts
 // vuex.d.ts
 declare module 'vuex' {
+  export * from 'vuex/types'
   export { createStore } from 'vuex-ts-enhanced'
 }
 ```
 Then you can use vuex without any change!
 
-## Notes
+## Notice
 **Unsupported actions:**
 1. does not support object-style commit or dispatch because there is no limit to the payload must be object type.
 2. does not support the Accessing Global Assets in Namespaced Modules, this usage is not recommended.
@@ -82,6 +83,7 @@ declare module '@vue/runtime-core' {
 ```ts
 // vuex.d.ts
 declare module 'vuex' {
+  export * from 'vuex/types'
   export { createStore } from 'vuex-ts-enhanced'
 }
 ```
