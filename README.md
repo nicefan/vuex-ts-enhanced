@@ -1,6 +1,8 @@
 # Typescript enhanced for VUEX 4.x
 Better provide perceptive tips and TS checks, enhance state, geters infinite hierarchical property hints, and support read-only checks without affecting functions already supported by TS; Enhanced commit, dispache methods sense all operational type names and check payload parameters, and type names support name stitching of namespaced configurations.
 
+[中文](#vuex-4x-TS增强) | [effect screenshot](#effect)  
+
 Vuex PR: https://github.com/vuejs/vuex/pull/2054
 
 ## Installing
@@ -53,7 +55,7 @@ Instead of manually specifying `<State>`, the default will automatically infer f
   ```
 
 ## global type supplement
-When you install a store into a Vue app, you mount the 'this.$store' property and inject the store into an app-level dependency, using "store" as the default key when `InjectionKey` is not specified, so we can use `inject('store')` in the combined API to get the store instance, but we can't sense the type of data returned, so we can give it the following way Store for type addition:
+When you install a store into a Vue app, you mount the `this.$store` property and inject the store into an app-level dependency, using "store" as the default key when `InjectionKey` is not specified, so we can use `inject('store')` in the combined API to get the store instance, but we can't sense the type of data returned, so we can give it the following way Store for type addition:
 ``` ts
 import { store } from '.. /src/store'
 
@@ -70,11 +72,25 @@ declare module '@vue/runtime-core' {
 }
 ```
 ## vuex 4.x TS增强
-更好的支持智能提示及TS检查，在不影响已有TS支持的功能情况下， 增强 state, getters 无限层级属性提示，并支持只读校验； 增强commit、dispache方法感知所有操作类型名称并对载荷参数检查，类型名称支持namespaced配置进行拼接。
+更好的支持智能提示及TS检查，在不影响已有TS支持的功能情况下， 
++ 增强 state, getters 无限层级属性提示，并支持只读校验； 
++ 增强 commit、dispache 方法感知所有操作类型名称并对载荷参数检查，
++ 类型名称支持namespaced配置进行拼接。
 
+## 使用
+使用覆盖声明方式, 只需要在你的项目文件夹中添加一个以下代码的`d.ts`文件：
+```ts
+// vuex.d.ts
+declare module 'vuex' {
+  export { createStore } from 'vuex-ts-enhanced'
+}
+```
+仅此，去尝试新的TS支持带来的智能提示吧！
+
+## 补充
 不支持的操作：
-1. 不支持对象方式分法或提交，因为没有限制载荷必须为对象类型
-2. 不支持	在带命名空间的模块注册全局 action，不推荐这种用法
+1. 不支持对象方式提交或分发，因为没有限制载荷必须为对象类型
+2. 不支持在带命名空间的模块注册全局 action，不推荐这种用法
 3. 不支持动态注册的模块， 需要使用 `(store.dispatch as any)('doSomething')` 的方式来跳过检查，
 
 
@@ -93,8 +109,8 @@ const store = createStore({
 }
 ```
 
-*全局类型补充*  
-将 store 安装到 Vue 应用时，会挂载`this.$store`属性，同时将 store 注入为应用级依赖，在未指定 `InjectionKey` 时将使用 "store" 作为默认 key, 因此我们可以在组合式 API 中使用`inject('store')`来拿到 store 实例，但是却无法感知返回的数据类型，为此我们可以使用下面的方式给 store 进行类型补充：
+## 全局类型补充  
+将 store 安装到 Vue 应用时，会挂载 `this.$store` 属性，同时将 store 注入为应用级依赖，在未指定 `InjectionKey` 时将使用 "store" 作为默认 key, 因此我们可以在组合式 API 中使用`inject('store')`来拿到 store 实例，但是却无法感知返回的数据类型，为此我们可以使用下面的方式给 store 进行类型补充：
 
 ``` ts
 import { store } from '.. /src/store'
@@ -113,4 +129,4 @@ declare module '@vue/runtime-core' {
 ```
 
 ## Effect
-![image](https://github.com/nicefan/vuex-ts-enhanced/raw/master/vuex-types.jpg)
+![image](https://github.com/nicefan/vuex-ts-enhanced/raw/master/effect.webp)
