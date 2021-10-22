@@ -1,4 +1,4 @@
-import { Store, StoreOptions, CommitOptions } from 'vuex'
+import { Store, StoreOptions, CommitOptions, Module } from 'vuex'
 
 type Obj<T = any> = Record<string, T>
 
@@ -60,8 +60,32 @@ interface ExStore<Opt extends StoreOptions<any>> extends Store<Opt['state']> {
   commit: AllCommit<Opt>
 }
 
+interface StoreModule<Opt extends StoreOptions<any>> {
+  readonly getters: AllGetter<Opt>
+  readonly state: AllState<Opt>
+  dispatch: AllDispatch<Opt>
+  commit: AllCommit<Opt>
+  setState: (payload: Partial<Opt['state']>) => void
+}
+
 type ExStoreOptions<Opt extends StoreOptions<any>, S> = StoreOptions<S> & Opt
 
 export function createStore<S, Opt>(options: ExStoreOptions<Opt, S>): ExStore<Opt>
 export type ExCreateStore = <S, Opt>(options: ExStoreOptions<Opt, S>) => ExStore<Opt>
-// export function baseUseStore<S = any>(injectKey?: InjectionKey<S> | string): S;
+
+type ExModule<Opt, S, R extends StoreOptions<any> = Obj> = Module<S, R['state']> & Opt & { name: string }
+
+type ModuleDefault<S> = {
+    namespaced: true,
+    mutations: { 'SET_STATE': (state:any, payload: Partial<S>) => void }
+}
+
+type DefineStore<Opt> = {
+  option: Opt,
+  addModules: <M extends Obj>(modules: M) => Opt & { modules: { [K in keyof M]: M[K] }}
+}
+export function defineModule<Opt, S, R>(root: R, config: ExModule<Opt, S, R>): Opt & ModuleDefault<S>
+export function defineModule<Opt, S>(config: ExModule<Opt, S>): Opt & ModuleDefault<S>
+
+export function defineStore<S, Opt>(options: ExStoreOptions<Opt, S>): DefineStore<Opt>
+export function useModule<Opt extends Obj>(options:Opt, rootKey?: string | symbol): () => StoreModule<Opt>
